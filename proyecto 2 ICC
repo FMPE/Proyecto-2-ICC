@@ -1,1 +1,21 @@
+#es un primer avance, falta hacer menu y modulos
 
+matriz = [["*","E","*","*","*"],
+          ["*"," ","*"," ","S"],
+          ["*"," ","*"," ","*"],
+          ["*"," "," "," ","*"],
+          ["*","*","*","*","*"]]
+#hay que crear dos laberintos mas
+
+for i in range(len(matriz)):
+    print(matriz[i], end="")
+    print()
+
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        if matriz[i][j] == " ":
+            matriz[i][j] = "#"
+
+for i in range(len(matriz)):
+    print(matriz[i], end="")
+    print()
