@@ -1,21 +1,40 @@
-#es un primer avance, falta hacer menu y modulos
+import copy
 
-matriz = [["*","E","*","*","*"],
-          ["*"," ","*"," ","S"],
-          ["*"," ","*"," ","*"],
-          ["*"," "," "," ","*"],
-          ["*","*","*","*","*"]]
-#hay que crear dos laberintos mas
+laberinto = [["#","E","#","#","#"],
+             ["#"," ","#"," ","#"],
+             ["#"," "," "," ","#"],
+             ["#"," ","#"," ","S"],
+             ["#","#","#","#","#"]]
 
-for i in range(len(matriz)):
-    print(matriz[i], end="")
-    print()
+def buscar_E(matriz):
+    for l in range(len(matriz)):
+        for e in range(len(matriz[l])):
+            if matriz[l][e] == "E":
+                return [l, e]
 
-for i in range(len(matriz)):
-    for j in range(len(matriz[i])):
-        if matriz[i][j] == " ":
-            matriz[i][j] = "#"
+coordenada_inicial = buscar_E(laberinto)
+fila = int(coordenada_inicial[0])
+columna = int(coordenada_inicial[1])
+copia = copy.deepcopy(laberinto)
 
-for i in range(len(matriz)):
-    print(matriz[i], end="")
-    print()
+def matriz_binaria(matriz):
+    for l in range(len(matriz)):
+        for e in range(len(matriz[l])):
+            if matriz[l][e] == "E":
+                matriz[l][e] = 3
+            elif matriz[l][e] == " ":
+                matriz[l][e] = 0
+            elif matriz[l][e] == "#":
+                matriz[l][e] = 1
+            elif matriz[l][e] == "S":
+                matriz[l][e] = 5
+    return matriz
+
+nueva_matriz = matriz_binaria(copia)
+
+def recorrido(nm, i, j):
+    if nm[i][j] == 5:
+        return [[i, j]]
+    if nm[i][j] == 1:
+        return []
+    nm[i][j] = 2
